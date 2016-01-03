@@ -1,0 +1,19 @@
+<h3>Add a new customer:</h3>
+	<form name="add">
+		Name:<input type="text" ng-model="main.newCustomer.first_name">
+		
+		<button ng-click="main.addCustomer(main.newCustomer)">Add Customer</button>
+	</form>	
+	<p>Search customers: <input type="text" ng-model="filter_name"></p>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Created Date</th>
+			<th>Actions</th>
+		</tr>	
+		<tr ng-repeat="customer in main.customers| filter:filter_name | orderBy:'created_at'">
+			<td ng-bind="customer.first_name"></td>
+			<td ng-bind="customer.created_at | date: 'medium'"></td>
+			<td><button ng-click="main.removeCustomer(customer)">Remove</button></td>
+		</tr>
+	</table>

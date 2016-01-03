@@ -1,0 +1,37 @@
+<style>
+#prod_div img{
+	height: 200px;
+	width: 300px
+}
+#prod_div{
+	display: inline-block;
+	padding: 5px;
+}
+</style>
+
+<h1>Dashboard</h1>
+	<div id="prod_div" ng-repeat="product in main.products">
+		<h3 ng-bind="product.item"></h3>
+		<img ng-src="{{product.image}}" alt="img" />
+		<p>Quantity left:</p>
+		<p ng-bind="product.qty"></p>
+		<p ng-bind="product.description"></p>
+	</div>		
+<div>
+<h2>Recent Orders</h2>
+	<div ng-repeat="order in main.orders | filter:filter_name | orderBy:'created_at'">
+	
+		<p>{{order.first_name}} purchased {{order.order_qty}} {{order.item}} on {{order.created_at | date: 'medium'}}</p>
+		
+	</div>
+	<a href="#/orders">Show All Orders</a>
+</div>
+<div>
+<h2>New Customers</h2>
+	<ul ng-repeat="customer in main.customers | filter:filter_name | orderBy:'created_at'">
+		<li>{{customer.first_name}} joined the store on {{customer.created_at | date: 'medium'}}</li>
+	</ul>
+</div>		
+
+<div ng-if="date1 > date2">date1 > date2</div>
+    <div ng-if="date2 > date1">date2 > date1</div>

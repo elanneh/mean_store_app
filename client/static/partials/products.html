@@ -1,0 +1,32 @@
+<style>
+#prod_div img{
+	height: 200px;
+	width: 300px
+}
+#prod_div{
+	display: inline-block;
+	padding: 5px;
+}
+</style>
+
+<h1>Product page</h1>
+	<p>Search products: <input type="text" ng-model="filter_item"></p>
+	<h3>Add a new product</h3>
+	<div id="product_form">
+		<form>
+		<p>Name:<input type="text" ng-model="main.newProduct.item"></p>
+		<p>Image (url):<input type="text" ng-model="main.newProduct.image"></p>
+		<p>Description: <textarea ng-model="main.newProduct.description"></textarea></p>
+		<p>Initial Quantity:<input type="text" ng-model="main.newProduct.qty"></p>
+		<p><input type="submit" value="add new item" ng-click="main.addProduct(main.newProduct)"></p>
+		</form>
+	</div>
+
+	
+	<div id="prod_div" ng-repeat="product in main.products">
+			<h3 ng-bind="product.item"></h3>
+			<img ng-src="{{product.image}}" alt="img" />
+			<p>Quantity left:</p>
+			<p ng-bind="product.qty"></p>
+			<p ng-bind="product.description"></p>
+	</div>		

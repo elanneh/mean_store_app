@@ -1,0 +1,22 @@
+<h3>Add a new order:</h3>
+<form name="add_order">
+	Name:<select ng-model="main.newOrder.first_name" ng-options="customer.first_name for customer in main.customers"></select>			
+	Product:<select ng-model="main.newOrder.item" ng-options="product.item for product in main.products"></select>
+	Qty: <input type="text" ng-model="main.newOrder.order_qty">
+	<button ng-click="main.addOrder(main.newOrder)">Add Order</button>
+</form>	
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Item</th>
+		<th>Qty</th>
+		<th>Created Date</th>
+	<tr>	
+	<tr ng-repeat="order in main.orders | filter:filter_name | orderBy:'created_at'">
+		<td ng-bind="order.first_name"></td>
+		<td ng-bind="order.item"></td>
+		<td ng-bind="order.order_qty"></td>
+		<td ng-bind="order.created_at | date: 'medium'"></td>
+	</tr>
+</table>
